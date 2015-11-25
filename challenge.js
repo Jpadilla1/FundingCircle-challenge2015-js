@@ -1,3 +1,5 @@
+'use strict';
+
 var isPrime = function(number) {
   if (number === 2)
     return true;
@@ -27,14 +29,14 @@ var nPrimes = function(N) {
 }
 
 var printMultiplicationTable = function(numbers) {
-  var currentRow = "x, " + numbers.join(", ");
+  var currentRow = 'x, ' + numbers.join(', ');
   console.log(currentRow);
-  for (var n of numbers) {
-    currentRow = n + ", ";
-    for (var i = 0; i < numbers.length; i++)
-      currentRow += n * numbers[i] + ", ";
-    console.log(currentRow.slice(0, currentRow.length-2));
-  }
+  numbers.forEach(function(n) {
+    currentRow = n + ', ' + numbers.map(function(num) {
+      return num * n;
+    }).join(', ');
+    console.log(currentRow);
+  });
 }
 
 printMultiplicationTable( nPrimes(10) )
